@@ -2,6 +2,10 @@ package me.xorrad.cubikcivilization.commands;
 
 import me.xorrad.cubikcivilization.core.commands.CommandGroup;
 import me.xorrad.cubikcivilization.core.commands.CommandParameter;
+import org.bukkit.Bukkit;
+
+import java.util.Arrays;
+import java.util.Collections;
 
 public class ExampleCommand extends CommandGroup {
 
@@ -19,6 +23,13 @@ public class ExampleCommand extends CommandGroup {
                 .execute((sender, params) -> {
                     sender.sendMessage("§aname: §f" + ((String) params[0]));
                     sender.sendMessage("§aamount: §f" + ((int) params[1]));
+                })
+                .complete((sender, params) -> {
+                    if(params.length == 1)
+                        return Bukkit.getOnlinePlayers().stream().map(p -> p.getName()).toList();
+                    if(params.length > 1)
+                        return Arrays.stream(new int[]{1, 2, 3, 4, 5, 6}).mapToObj(String::valueOf).toList();
+                    return Collections.<String>emptyList();
                 });
     }
 }
