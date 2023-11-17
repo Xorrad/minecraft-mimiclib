@@ -2,7 +2,9 @@ package me.xorrad.cubikcivilization.commands;
 
 import me.xorrad.cubikcivilization.core.commands.CommandGroup;
 import me.xorrad.cubikcivilization.core.commands.CommandParameter;
+import me.xorrad.cubikcivilization.menus.TestMenu;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -30,6 +32,12 @@ public class ExampleCommand extends CommandGroup {
                     if(params.length > 1)
                         return Arrays.stream(new int[]{1, 2, 3, 4, 5, 6}).mapToObj(String::valueOf).toList();
                     return Collections.<String>emptyList();
+                });
+
+        newSubCommand("gui")
+                .playerOnly(true)
+                .execute((sender, params) -> {
+                    TestMenu.open((Player) sender);
                 });
     }
 }

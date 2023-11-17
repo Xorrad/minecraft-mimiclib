@@ -129,7 +129,6 @@ public class CommandGroup {
             Command command = getTargetCommand(strings);
             if(command == null) {
                 return Collections.<String>emptyList();
-
             }
             strings = getTargetCommandParameters(strings);
             return command.complete(sender, strings);
