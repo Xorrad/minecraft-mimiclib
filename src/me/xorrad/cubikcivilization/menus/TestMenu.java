@@ -1,10 +1,10 @@
 package me.xorrad.cubikcivilization.menus;
 
 import me.xorrad.cubikcivilization.core.ui.Item;
+import me.xorrad.cubikcivilization.core.ui.ItemClickResult;
 import me.xorrad.cubikcivilization.core.ui.Menu;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryType;
 
 public class TestMenu {
 
@@ -13,8 +13,18 @@ public class TestMenu {
                 .title("Test")
                 .size(2)
                 .add(new Item().material(Material.IRON_SWORD))
-                .onClick((player1, item, event) -> {
-                    return event.getRawSlot() < event.getInventory().getSize();
+                .add(new Item()
+                        .material(Material.BOOK)
+                        .amount(10)
+                        .name("§aAccounts")
+                        .lore("§eHello world")
+                        .onClick((p, menu) -> {
+                            p.sendMessage("hello world");
+                            return ItemClickResult.NO_RESULT;
+                        })
+                )
+                .onClick((p, item, event) -> {
+                    return true;
                 })
                 .open(player);
     }

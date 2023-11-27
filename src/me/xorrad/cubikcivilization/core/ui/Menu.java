@@ -34,7 +34,7 @@ public class Menu implements Listener {
         this.title = "";
         this.items = new HashMap<>();
         this.closeCallback = (player) -> {};
-        this.clickCallback = (player, item, event) -> false;
+        this.clickCallback = (player, item, event) -> true;
     }
 
     public Menu size(int rows) {
@@ -111,6 +111,8 @@ public class Menu implements Listener {
     private void onInventoryClick(InventoryClickEvent event) {
         if(!event.getInventory().equals(this.inventory))
             return;
+        if(event.getRawSlot() >= event.getInventory().getSize())
+            return;
 
         Player player = (Player) event.getWhoClicked();
         Item item = null;
@@ -118,15 +120,13 @@ public class Menu implements Listener {
         else if(this.items.containsKey(event.getSlot())) item = this.items.get(event.getSlot());
         else item = Item.fromItemStack(event.getCurrentItem());
 
-        boolean cancelled = this.clickCallback.apply(player, item, event);
+        boolean cancelled = this.clickCallback.apply(player, item, event) || event.isCancelled();
 
         if(cancelled) {
             event.setCancelled(true);
-            return;
+            player.updateInventory();
         }
 
-        if(item.isClickable()) {
-            ItemClickResult result = ((ClickableItem) item).click(player, this);
-        }
+        ItemClickResult result = item.click(player, this);
     }
 }

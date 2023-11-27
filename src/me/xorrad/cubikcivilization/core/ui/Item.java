@@ -1,17 +1,22 @@
 package me.xorrad.cubikcivilization.core.ui;
 
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.BiFunction;
 
 public class Item extends ItemStack {
 
+    private BiFunction<Player, Menu, ItemClickResult> clickCallback;
+
     public Item() {
         super(Material.AIR);
+        this.clickCallback = (player, menu) -> { return ItemClickResult.NO_RESULT; };
     }
 
     public Item material(Material material) {
@@ -49,8 +54,13 @@ public class Item extends ItemStack {
         return this;
     }
 
-    public boolean isClickable() {
-        return false;
+    public Item onClick(BiFunction<Player, Menu, ItemClickResult> function) {
+        this.clickCallback = function;
+        return this;
+    }
+
+    public ItemClickResult click(Player player, Menu menu) {
+        return this.clickCallback.apply(player, menu);
     }
 
     public static Item fromItemStack(ItemStack itemStack) {
