@@ -12,6 +12,8 @@ import java.util.stream.Collectors;
 
 public class Command {
 
+    //TODO: look up annotations instead of builder
+
     private CommandGroup group;
     private String name;
     private boolean playerOnly;
