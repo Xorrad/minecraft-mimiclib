@@ -1,2 +1,2 @@
-# minecraft-cubik-civilization
-A grand strategy game in Minecraft
+# minecraft-mimiclib
+A library to create minecraft plugins faster.

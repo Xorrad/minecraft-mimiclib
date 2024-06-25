@@ -1,4 +1,4 @@
-package me.xorrad.cubikcivilization.core.events.player;
+package me.xorrad.lib.player;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

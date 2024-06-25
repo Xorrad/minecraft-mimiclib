@@ -1,6 +1,0 @@
-main: me.xorrad.cubikcivilization.CubikCivilization
-version: 1.0
-name: CubikCivilization
-author: Xorrad
-commands:
-  example:

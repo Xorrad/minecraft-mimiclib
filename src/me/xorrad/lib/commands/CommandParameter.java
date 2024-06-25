@@ -1,4 +1,4 @@
-package me.xorrad.cubikcivilization.core.commands;
+package me.xorrad.lib.commands;
 
 import java.util.function.Function;
 

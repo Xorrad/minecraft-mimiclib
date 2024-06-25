@@ -1,8 +1,8 @@
-package me.xorrad.cubikcivilization;
+package me.xorrad.lib;
 
-import me.xorrad.cubikcivilization.commands.ExampleCommand;
-import me.xorrad.cubikcivilization.configs.ExampleConfig;
-import me.xorrad.cubikcivilization.core.configs.Config;
+import me.xorrad.lib.commands.ExampleCommand;
+import me.xorrad.lib.configs.ExampleConfig;
+import me.xorrad.lib.configs.Config;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;

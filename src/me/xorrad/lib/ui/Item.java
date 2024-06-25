@@ -1,4 +1,4 @@
-package me.xorrad.cubikcivilization.core.ui;
+package me.xorrad.lib.ui;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

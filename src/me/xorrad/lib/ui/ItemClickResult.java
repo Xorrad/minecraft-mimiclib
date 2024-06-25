@@ -1,4 +1,4 @@
-package me.xorrad.cubikcivilization.core.ui;
+package me.xorrad.lib.ui;
 
 public enum ItemClickResult {
     NO_RESULT,

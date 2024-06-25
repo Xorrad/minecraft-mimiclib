@@ -1,6 +1,6 @@
-package me.xorrad.cubikcivilization.core.commands;
+package me.xorrad.lib.commands;
 
-import me.xorrad.cubikcivilization.CubikCivilization;
+import me.xorrad.lib.LibMain;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
@@ -102,7 +102,7 @@ public class CommandGroup {
     }
 
     public void register() {
-        PluginCommand command = CubikCivilization.getInstance().getCommand(name);
+        PluginCommand command = LibMain.getInstance().getCommand(name);
         command.setExecutor(new Executor());
         command.setTabCompleter(new Completer());
         groups.put(this.name, this);

@@ -1,4 +1,4 @@
-package me.xorrad.cubikcivilization.core.commands;
+package me.xorrad.lib.commands;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;

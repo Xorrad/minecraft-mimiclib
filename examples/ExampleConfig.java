@@ -1,7 +1,7 @@
-package me.xorrad.cubikcivilization.configs;
+package me.xorrad.lib.configs;
 
-import me.xorrad.cubikcivilization.CubikCivilization;
-import me.xorrad.cubikcivilization.core.configs.Config;
+import me.xorrad.lib.CubikCivilization;
+import me.xorrad.lib.configs.Config;
 
 import java.util.logging.Level;
 

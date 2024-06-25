@@ -1,8 +1,8 @@
-package me.xorrad.cubikcivilization.commands;
+package me.xorrad.lib.commands;
 
-import me.xorrad.cubikcivilization.core.commands.CommandGroup;
-import me.xorrad.cubikcivilization.core.commands.CommandParameter;
-import me.xorrad.cubikcivilization.menus.TestMenu;
+import me.xorrad.lib.commands.CommandGroup;
+import me.xorrad.lib.commands.CommandParameter;
+import me.xorrad.lib.menus.TestMenu;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 

@@ -1,7 +1,7 @@
-package me.xorrad.cubikcivilization.core.ui;
+package me.xorrad.lib.ui;
 
-import me.xorrad.cubikcivilization.CubikCivilization;
-import me.xorrad.cubikcivilization.core.util.TriFunction;
+import me.xorrad.lib.LibMain;
+import me.xorrad.lib.util.TriFunction;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -9,14 +9,9 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
-import java.util.Map;
-import java.util.function.BiConsumer;
-import java.util.function.BiFunction;
 import java.util.function.Consumer;
 
 public class Menu implements Listener {
@@ -81,7 +76,7 @@ public class Menu implements Listener {
 
     public Menu create() {
         if(this.inventory == null)
-            Bukkit.getPluginManager().registerEvents(this, CubikCivilization.getInstance());
+            Bukkit.getPluginManager().registerEvents(this, LibMain.getInstance());
         this.inventory = Bukkit.createInventory(null, this.size, this.title);
         this.items.forEach((index, item) -> this.inventory.setItem(index, item));
         return this;

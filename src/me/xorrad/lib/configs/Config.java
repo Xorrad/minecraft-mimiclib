@@ -1,6 +1,6 @@
-package me.xorrad.cubikcivilization.core.configs;
+package me.xorrad.lib.configs;
 
-import me.xorrad.cubikcivilization.CubikCivilization;
+import me.xorrad.lib.LibMain;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
@@ -10,7 +10,7 @@ public abstract class Config extends YamlConfiguration {
     private File file;
 
     public Config(String fileName) {
-        this.file = new File(CubikCivilization.getInstance().getDataFolder(), fileName);
+        this.file = new File(LibMain.getInstance().getDataFolder(), fileName);
     }
 
     public void load() {

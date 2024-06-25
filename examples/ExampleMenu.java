@@ -1,8 +1,8 @@
-package me.xorrad.cubikcivilization.menus;
+package me.xorrad.lib.menus;
 
-import me.xorrad.cubikcivilization.core.ui.Item;
-import me.xorrad.cubikcivilization.core.ui.ItemClickResult;
-import me.xorrad.cubikcivilization.core.ui.Menu;
+import me.xorrad.lib.ui.Item;
+import me.xorrad.lib.ui.ItemClickResult;
+import me.xorrad.lib.ui.Menu;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
