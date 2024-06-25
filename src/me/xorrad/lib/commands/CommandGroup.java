@@ -44,7 +44,11 @@ public class CommandGroup {
     }
 
     public Command newDefaultCommand() {
-        return newSubCommand("");
+        Command command = newSubCommand("");
+        command.complete((sender, args) -> {
+            return this.getCommandNames();
+        });
+        return command;
     }
 
     public boolean hasCommand(String command) {
@@ -78,6 +82,13 @@ public class CommandGroup {
         if(strings.length > 0 && hasCommand(strings[0])) // Skip first string in parmaters when a subcommand is specified.
             return Arrays.stream(strings).skip(1).toArray(String[]::new);
         return strings;
+    }
+
+    public List<String> getCommandNames() {
+        return this.commands.values().stream()
+                .map(cmd -> cmd.getName())
+                .filter(cmd -> !cmd.isEmpty())
+                .toList();
     }
 
     public String[] parseStrings(String[] strings) {
