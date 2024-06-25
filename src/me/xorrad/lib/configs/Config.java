@@ -6,8 +6,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 
 public abstract class Config extends YamlConfiguration {
-
-    private File file;
+    protected File file;
 
     public Config(String fileName) {
         this.file = new File(LibMain.getInstance().getDataFolder(), fileName);
