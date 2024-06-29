@@ -2,6 +2,7 @@ package me.xorrad.lib.ui;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -68,6 +69,14 @@ public class Item extends ItemStack {
         this.setType(Material.PLAYER_HEAD);
         SkullMeta meta = (SkullMeta) this.getItemMeta();
         meta.setOwnerProfile(profile);
+        this.setItemMeta(meta);
+        return this;
+    }
+
+    public Item hideAttributes() {
+        ItemMeta meta = this.getItemMeta();
+        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+        meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
         this.setItemMeta(meta);
         return this;
     }
