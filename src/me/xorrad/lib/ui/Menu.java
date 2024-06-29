@@ -21,6 +21,7 @@ public class Menu implements Listener {
     private HashMap<Integer, Item> items;
     private Consumer<Player> closeCallback;
     private TriFunction<Player, Item, InventoryClickEvent, Boolean> clickCallback;
+    private boolean isClosed;
 
     private Inventory inventory;
 
@@ -30,6 +31,7 @@ public class Menu implements Listener {
         this.items = new HashMap<>();
         this.closeCallback = (player) -> {};
         this.clickCallback = (player, item, event) -> true;
+        this.isClosed = false;
     }
 
     public Menu size(int rows) {
@@ -97,6 +99,8 @@ public class Menu implements Listener {
     private void onInventoryClose(InventoryCloseEvent event) {
         if(!event.getInventory().equals(this.inventory))
             return;
+        if(this.isClosed)
+            return;
 
         this.closeCallback.accept((Player) event.getPlayer());
         HandlerList.unregisterAll(this);
@@ -123,5 +127,9 @@ public class Menu implements Listener {
         }
 
         ItemClickResult result = item.click(player, this);
+        if(result.equals(ItemClickResult.CLOSE_INVENTORY)) {
+            this.isClosed = true;
+            player.closeInventory();
+        }
     }
 }
