@@ -5,6 +5,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.profile.PlayerProfile;
 
 import java.util.Arrays;
 import java.util.List;
@@ -50,6 +52,22 @@ public class Item extends ItemStack {
     public Item durability(int durability) {
         Damageable meta = (Damageable) this.getItemMeta();
         meta.setDamage(durability);
+        this.setItemMeta(meta);
+        return this;
+    }
+
+    public Item head(String playerName) {
+        this.setType(Material.PLAYER_HEAD);
+        SkullMeta meta = (SkullMeta) this.getItemMeta();
+        meta.setOwner(playerName);
+        this.setItemMeta(meta);
+        return this;
+    }
+
+    public Item head(PlayerProfile profile) {
+        this.setType(Material.PLAYER_HEAD);
+        SkullMeta meta = (SkullMeta) this.getItemMeta();
+        meta.setOwnerProfile(profile);
         this.setItemMeta(meta);
         return this;
     }

@@ -79,7 +79,7 @@ public class CommandGroup {
     }
 
     public String[] getTargetCommandParameters(String[] strings) {
-        if(strings.length > 0 && hasCommand(strings[0])) // Skip first string in parmaters when a subcommand is specified.
+        if(strings.length > 0 && hasCommand(strings[0])) // Skip first string in parameters when a subcommand is specified.
             return Arrays.stream(strings).skip(1).toArray(String[]::new);
         return strings;
     }
