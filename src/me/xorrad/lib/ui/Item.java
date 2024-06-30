@@ -2,6 +2,7 @@ package me.xorrad.lib.ui;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
@@ -15,11 +16,13 @@ import java.util.function.BiFunction;
 
 public class Item extends ItemStack {
 
-    private BiFunction<Player, Menu, ItemClickResult> clickCallback;
+    private BiFunction<Player, Menu, ItemClickResult> leftClickCallback;
+    private BiFunction<Player, Menu, ItemClickResult> rightClickCallback;
 
     public Item() {
         super(Material.AIR);
-        this.clickCallback = (player, menu) -> { return ItemClickResult.NO_RESULT; };
+        this.leftClickCallback = (player, menu) -> { return ItemClickResult.NO_RESULT; };
+        this.rightClickCallback = (player, menu) -> { return ItemClickResult.NO_RESULT; };
     }
 
     public Item material(Material material) {
@@ -81,13 +84,20 @@ public class Item extends ItemStack {
         return this;
     }
 
-    public Item onClick(BiFunction<Player, Menu, ItemClickResult> function) {
-        this.clickCallback = function;
+    public Item leftClick(BiFunction<Player, Menu, ItemClickResult> function) {
+        this.leftClickCallback = function;
         return this;
     }
 
-    public ItemClickResult click(Player player, Menu menu) {
-        return this.clickCallback.apply(player, menu);
+    public Item rightClick(BiFunction<Player, Menu, ItemClickResult> function) {
+        this.rightClickCallback = function;
+        return this;
+    }
+
+    public ItemClickResult applyClick(Player player, Menu menu, ClickType mouseButton) {
+        if(mouseButton.isLeftClick())
+            return this.leftClickCallback.apply(player, menu);
+        return this.rightClickCallback.apply(player, menu);
     }
 
     public static Item fromItemStack(ItemStack itemStack) {

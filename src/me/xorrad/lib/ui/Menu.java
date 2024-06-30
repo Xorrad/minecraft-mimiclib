@@ -66,6 +66,10 @@ public class Menu implements Listener {
         return this;
     }
 
+    public void setClosed(boolean closed) {
+        isClosed = closed;
+    }
+
     public Menu onClose(Consumer<Player> function) {
         this.closeCallback = function;
         return this;
@@ -99,10 +103,9 @@ public class Menu implements Listener {
     private void onInventoryClose(InventoryCloseEvent event) {
         if(!event.getInventory().equals(this.inventory))
             return;
-        if(this.isClosed)
-            return;
 
-        this.closeCallback.accept((Player) event.getPlayer());
+        if(!this.isClosed)
+            this.closeCallback.accept((Player) event.getPlayer());
         HandlerList.unregisterAll(this);
     }
 
@@ -126,7 +129,7 @@ public class Menu implements Listener {
             player.updateInventory();
         }
 
-        ItemClickResult result = item.click(player, this);
+        ItemClickResult result = item.applyClick(player, this, event.getClick());
         if(result.equals(ItemClickResult.CLOSE_INVENTORY)) {
             this.isClosed = true;
             player.closeInventory();
