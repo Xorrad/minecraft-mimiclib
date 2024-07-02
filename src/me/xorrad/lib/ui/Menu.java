@@ -93,6 +93,11 @@ public class Menu implements Listener {
         return this;
     }
 
+    public void destroy() {
+        this.inventory = null;
+        HandlerList.unregisterAll(this);
+    }
+
     public void open(Player player) {
         if(this.inventory == null) this.create();
         player.openInventory(this.inventory);
@@ -105,17 +110,16 @@ public class Menu implements Listener {
     }
 
     @EventHandler
-    private void onInventoryClose(InventoryCloseEvent event) {
+    public void onInventoryClose(InventoryCloseEvent event) {
         if(!event.getInventory().equals(this.inventory))
             return;
-
         if(!this.isClosed)
             this.closeCallback.accept((Player) event.getPlayer());
-        HandlerList.unregisterAll(this);
+        this.destroy();
     }
 
     @EventHandler
-    private void onInventoryClick(InventoryClickEvent event) {
+    public void onInventoryClick(InventoryClickEvent event) {
         if(!event.getInventory().equals(this.inventory))
             return;
         if(event.getRawSlot() >= event.getInventory().getSize())
