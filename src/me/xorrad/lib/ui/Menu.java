@@ -3,6 +3,7 @@ package me.xorrad.lib.ui;
 import me.xorrad.lib.LibMain;
 import me.xorrad.lib.util.TriFunction;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
@@ -64,6 +65,10 @@ public class Menu implements Listener {
             }
         }
         return this;
+    }
+
+    public Item get(int index) {
+        return this.items.getOrDefault(index, new Item().material(Material.AIR));
     }
 
     public void setClosed(boolean closed) {
